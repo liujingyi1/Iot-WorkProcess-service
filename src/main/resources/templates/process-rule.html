@@ -1,0 +1,73 @@
+<script type="text/ecmascript" src="jqgrid/js/i18n/grid.locale-cn.js"></script>
+<script type="text/ecmascript" src="jqgrid/js/jquery.jqGrid.min.js"></script>
+<!-- This is the localization file of the grid controlling messages, labels, etc.
+<!-- A link to a jQuery UI ThemeRoller theme, more than 22 built-in and many more custom -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> 
+<link rel="stylesheet" type="text/css" media="screen" href="jqgrid/css/ui.jqgrid-bootstrap.css" />
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script> -->
+
+<div class="row-content am-cf">
+      <div class="row">
+          <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+              <div class="widget am-cf">
+                  <div class="widget-head am-cf">
+                      <div class="widget-title  am-cf">数据统计明细</div>
+                  </div>
+                  
+                  <div class="am-tabs am-margin" data-am-tabs>
+				    <ul class="am-tabs-nav am-nav am-nav-tabs">
+				      <li class="am-active"><a href="#tab1">电表明细</a></li>
+				      <li><a href="#tab2">设备用电明细</a></li>
+				      <li><a href="#tab3">维修汇总</a></li>
+				      <li><a href="#tab4">风险告警汇总</a></li>
+				    </ul>
+				    
+				    <div class="am-tabs-bd">
+				    	<!-- 电表明细 -->
+      					<div class="am-tab-panel am-fade am-in am-active" id="tab1">
+		                  	<div class="widget-body  am-fr">
+		                      <div class="am-u-sm-12">
+		                      	  <table id="ammeter"></table>
+		                      	  <div id="jqGridPager"></div>
+		                      </div>
+		                	</div>
+      					</div>
+      					<!-- 设备用电明细 -->
+      					<div class="am-tab-panel am-fade" id="tab2">
+      						<div class="widget-body  am-fr">
+		                      <div class="am-u-sm-12">
+		                      	  <table id="device"></table>
+		                      	  <div id="jqGridPager2"></div>
+		                      </div>
+		                	</div>
+      					</div>
+      					<!-- 维修汇总 -->
+      					<div class="am-tab-panel am-fade" id="tab3">
+      						<div class="widget-body  am-fr">
+		                      <div class="am-u-sm-12">
+		                      	  <table id="repair"></table>
+		                      	  <div id="jqGridPager3"></div>
+		                      </div>
+		                	</div>
+      					</div>
+      					<!-- 风险告警汇总 -->
+      					<div class="am-tab-panel am-fade" id="tab4">
+      						<div class="widget-body  am-fr">
+		                      <div class="am-u-sm-12">
+		                      	  <table id="alarm"></table>
+		                      	  <div id="jqGridPager4"></div>
+		                      </div>
+		                	</div>
+      					</div>
+      				</div>
+				  </div>
+				  
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/process-rule.js"></script>
+         
+                
+                

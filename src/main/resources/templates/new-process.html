@@ -1,0 +1,106 @@
+<script type="text/ecmascript" src="jqgrid/js/i18n/grid.locale-cn.js"></script>
+<script type="text/ecmascript" src="jqgrid/js/jquery.jqGrid.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" media="screen" href="jqgrid/css/ui.jqgrid-bootstrap.css" />
+
+<style>
+    .image-border {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    .image-add-border {
+        padding: 0.8rem;
+    }
+</style>
+
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <div class="widget-head am-cf">
+                    <div class="widget-title am-fl">新建工单</div>
+                    <div class="widget-function am-fr">
+                        <a href="javascript:;" class="am-icon-cog"></a>
+                    </div>
+                </div>
+
+                <div class="widget-body am-fr">
+                    <form class="am-form tpl-form-border-form tpl-form-border-br">
+                        <div class="am-form-group">
+                            <label for="customer-name" class="am-u-sm-2 am-form-label">发起者 <span class="tpl-form-line-small-title">Inititor</span></label>
+                            <div class="am-u-sm-4">
+                                <input type="text" class="tpl-form-input" id="customer-name" placeholder="请输入名字">
+                                <small>必填</small>
+                            </div>
+
+                            <label for="customer-phone" class="am-u-sm-2 am-form-label">联系方式 <span class="tpl-form-line-small-title">Phone</span></label>
+                            <div class="am-u-sm-4">
+                                <input type="text" class="tpl-form-input" id="customer-phone" placeholder="请输入电话号码">
+                                <small>必填</small>
+                            </div>
+                        </div>
+
+
+                        <div class="am-form-group">
+                            <label for="process-select" class="am-u-sm-2 am-form-label">工单类型 <span class="tpl-form-line-small-title">Type</span></label>
+                            <div class="am-u-sm-4">
+                                <select id="process-select" data-am-selected="{}">
+                                </select>
+                                <span class="am-form-caret"></span>
+                                <small>必填</small>
+                            </div>
+
+                            <label for="position-select" class="am-u-sm-2 am-form-label">报修地点 <span class="tpl-form-line-small-title">Postiton</span></label>
+                            <div class="am-u-sm-4">
+                                <select id="position-select" data-am-selected="{searchBox: 1}">
+                                </select>
+                                <span class="am-form-caret"></span>
+                                <small>必填</small>
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label for="customer-title" class="am-u-sm-2 am-form-label">标题</label>
+                            <div class="am-u-sm-10">
+                                <input type="text" class="tpl-form-input" id="customer-title" placeholder="请输入标题文字">
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label for="customer-summary" class="am-u-sm-2 am-form-label">描述内容</label>
+                            <div class="am-u-sm-10">
+                                <textarea class="" rows="10" id="customer-summary" placeholder="请输入内容"></textarea>
+                            </div>
+                        </div>
+
+                        <div id="image-group" class="am-form-group">
+                            <label for="image-add" class="am-u-sm-2 am-form-label">图片上传</label>
+<!--                            <div class="am-u-sm-1 image-border">-->
+<!--                                <img id="upload-pic-1" class="am-thumbnail am-thumbnail-pic" src="assets/img/u56.png" alt=""/>-->
+<!--                            </div>-->
+
+                            <div id="image-add" class="am-u-sm-1 am-u-end image-add-border">
+                                <div class="am-form-group am-form-file">
+                                    <img class="am-thumbnail" src="assets/img/u66.png" alt=""/>
+                                    <input id="upload-pic-file" type="file" multiple="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <div class="am-u-sm-10 am-u-sm-push-2">
+                                <button id="init-submit-btn" type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="assets/js/amazeui.min.js"></script>
+<script type="text/javascript" src="js/new-process.js"></script>
+                
+                

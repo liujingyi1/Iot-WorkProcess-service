@@ -1,0 +1,96 @@
+<script type="text/ecmascript" src="jqgrid/js/i18n/grid.locale-cn.js"></script>
+<script type="text/ecmascript" src="jqgrid/js/jquery.jqGrid.min.js"></script>
+<!-- This is the localization file of the grid controlling messages, labels, etc.
+  A link to a jQuery UI ThemeRoller theme, more than 22 built-in and many more custom -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" media="screen" href="jqgrid/css/ui.jqgrid-bootstrap.css" />
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script> -->
+
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <div class="widget-head am-cf">
+                    <div class="widget-title  am-cf">工单列表</div>
+                </div>
+
+                <div class="am-tabs am-margin" data-am-tabs>
+                    <ul class="am-tabs-nav am-nav am-nav-tabs">
+                        <li class="am-active"><a href="#tab1">待受理</a></li>
+                        <li><a href="#tab2">待分配</a></li>
+                        <li><a href="#tab3">待处理</a></li>
+                        <li><a href="#tab4">待审核</a></li>
+                    </ul>
+
+                    <div class="am-tabs-bd">
+                        <!-- 待受理 -->
+                        <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+                            <div class="widget-body  am-fr">
+                                <div class="am-u-sm-12">
+                                    <table id="process-list-accept"></table>
+                                    <div id="jqGridPager1"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 待分配 -->
+                        <div class="am-tab-panel am-fade am-in am-active" id="tab2">
+                            <div class="widget-body  am-fr">
+                                <div class="am-u-sm-12">
+                                    <table id="process-list-dispatch"></table>
+                                    <div id="jqGridPager2"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 待处理 -->
+                        <div class="am-tab-panel am-fade am-in am-active" id="tab3">
+                            <div class="widget-body  am-fr">
+                                <div class="am-u-sm-12">
+                                    <table id="process-list-fix"></table>
+                                    <div id="jqGridPager3"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 待审核 -->
+                        <div class="am-tab-panel am-fade am-in am-active" id="tab4">
+                            <div class="widget-body  am-fr">
+                                <div class="am-u-sm-12">
+                                    <table id="process-list-check"></table>
+                                    <div id="jqGridPager4"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-1">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">Modal 标题
+            <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+        </div>
+        <div class="am-modal-bd">
+            Modal 内容。
+        </div>
+    </div>
+</div>
+
+<div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">Amaze UI</div>
+        <div class="am-modal-bd">
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+        </div>
+    </div>
+</div>
+
+<script src="assets/js/amazeui.min.js"></script>
+<script type="text/javascript" src="js/show-process.js"></script>
+
+                
+                

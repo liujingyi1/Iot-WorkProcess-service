@@ -1,0 +1,50 @@
+<script type="text/ecmascript" src="jqgrid/js/i18n/grid.locale-cn.js" xmlns:th="http://www.w3.org/1999/xhtml"></script>
+<script type="text/ecmascript" src="jqgrid/js/jquery.jqGrid.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" media="screen" href="jqgrid/css/ui.jqgrid-bootstrap.css" />
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <div class="widget-head am-cf">
+                    <div class="widget-title am-fl">工单详情</div>
+                    <div class="widget-function am-fr">
+                        <a href="javascript:;" class="am-icon-cog"></a>
+                    </div>
+                </div>
+                <div class="widget-body am-fr">
+                    <div class="am-tabs am-margin" data-am-tabs>
+                        <ul class="am-tabs-nav am-nav am-nav-tabs">
+                            <li class="am-active"><a href="#tab1">基本信息</a></li>
+                            <li><a href="#tab2">流程详情</a></li>
+                        </ul>
+
+                        <div class="am-tabs-bd">
+                            <!-- 基本信息 -->
+                            <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+                                <div class="widget-body  am-fr">
+                                        <div th:include="process-detail"></div>
+                                </div>
+                            </div>
+                            <!-- 流程详情 -->
+                            <div class="am-tab-panel am-fade am-in am-active" id="tab2">
+                                <div class="widget-body  am-fr">
+                                    <div id="process-image-box" class="am-u-sm-12">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="assets/js/amazeui.min.js"></script>
+<script th:inline="javascript" type="text/javascript" src="js/handle-process.js"></script>
+<script type="text/javascript" src="js/showimage.js"></script>
+
+                

@@ -1,0 +1,127 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<style>
+    p{
+        word-wrap:break-word;
+        word-break:normal;
+    }
+</style>
+
+
+
+<form class="am-form tpl-form-border-form tpl-form-border-br" th:object="${order}">
+    <div id="taskId" th:value="*{taskView.taskId}" th:text="*{taskView.taskId}" hidden=""></div>
+    <div id="taskKey" th:value="*{taskView.taskKey}" th:text="*{taskView.taskKey}" hidden=""></div>
+    <div id="processInstanceId" th:value="*{customOrder.processInstanceId}" th:text="*{customOrder.processInstanceId}" hidden=""></div>
+    <div class="am-form-group">
+        <label class="am-u-sm-1 am-form-label">工单号: </label>
+        <div class="am-u-sm-3 am-padding-top-xs">
+            <p class="am-align-left" th:text="*{customOrder.id}"></p>
+        </div>
+
+        <label class="am-u-sm-1 am-form-label">创建时间: </label>
+        <div class="am-u-sm-3 am-padding-top-xs am-u-end">
+            <p class="am-align-left" th:text="*{customOrder.createdDate}"></p>
+        </div>
+    </div>
+
+    <div class="am-form-group">
+        <label class="am-u-sm-1 am-form-label">工单状态: </label>
+        <div class="am-u-sm-3 am-padding-top-xs">
+            <p class="am-align-left" th:text="*{processState.content}"></p>
+        </div>
+
+        <label class="am-u-sm-1 am-form-label">优先级: </label>
+        <div class="am-u-sm-3 am-padding-top-xs am-u-end">
+            <p class="am-align-left" th:text="*{customOrder.priority}"></p>
+        </div>
+    </div>
+
+    <div class="am-form-group">
+        <label class="am-u-sm-1 am-form-label">报修地点: </label>
+        <div class="am-u-sm-3 am-padding-top-xs">
+            <p class="am-align-left" th:text="*{customOrder.positionID}"></p>
+        </div>
+
+        <label class="am-u-sm-1 am-form-label">工单类型: </label>
+        <div class="am-u-sm-3 am-padding-top-xs am-u-end">
+            <p class="am-align-left" th:text="*{processType.proName}"></p>
+        </div>
+    </div>
+
+    <div class="am-form-group">
+        <label class="am-u-sm-1 am-form-label">报修人: </label>
+        <div class="am-u-sm-3 am-padding-top-xs">
+            <p class="am-align-left" th:text="*{customOrder.customerName}"></p>
+        </div>
+
+        <label class="am-u-sm-1 am-form-label">联系方式: </label>
+        <div class="am-u-sm-3 am-padding-top-xs am-u-end">
+            <p class="am-align-left" th:text="*{customOrder.customerPhone}"></p>
+        </div>
+    </div>
+
+    <div class="am-form-group">
+        <label class="am-u-sm-1 am-form-label">问题描述: </label>
+        <div class="am-u-sm-4 am-padding-top-xs am-u-end">
+            <p class="am-align-left" th:text="*{customOrder.orderSummary}"></p>
+        </div>
+    </div>
+</form>
+
+<form class="am-form tpl-form-border-form tpl-form-border-br">
+    <!--分配人 -->
+    <div id="dispatchGroup" class="am-form-group" hidden>
+        <label for="handle-user-select" class="am-u-sm-1 am-form-label">分配人</label>
+        <div class="am-u-sm-4 am-u-end">
+            <select id="handle-user-select" data-am-selected="{searchBox: 1}">
+            </select>
+            <span class="am-form-caret"></span>
+            <small>必填</small>
+        </div>
+    </div>
+
+    <!--完成: workResult == 1 -->
+    <!--退回任务: workResult == 2 -->
+    <div id="workResultGroup" class="am-form-group" hidden>
+        <label for="fix-result-select" class="am-u-sm-1 am-form-label">维修结果</label>
+        <div class="am-u-sm-4 am-u-end">
+            <select id="fix-result-select" data-am-selected="{searchBox: 1}">
+                <option value="1">完成</option>
+                <option value="2">退回任务</option>
+            </select>
+            <span class="am-form-caret"></span>
+            <small>必填</small>
+        </div>
+    </div>
+
+    <!--审核通过: checkResult == 0 -->
+    <!--重新分配: checkResult == 1 -->
+    <!--审核不通过: checkResult == 2 -->
+    <div id="checkResultGroup" class="am-form-group" hidden>
+        <label for="check-result-select" class="am-u-sm-1 am-form-label">检查结果</label>
+        <div class="am-u-sm-4 am-u-end">
+            <select id="check-result-select" data-am-selected="{searchBox: 1}">
+                <option value="0">审核通过</option>
+                <option value="1">重新分配</option>
+                <option value="2">审核不通过</option>
+            </select>
+            <span class="am-form-caret"></span>
+            <small>必填</small>
+        </div>
+    </div>
+
+    <div class="am-form-group">
+        <label for="task-complete-summary" class="am-u-sm-1 am-form-label">备注内容</label>
+        <div class="am-u-sm-10 am-u-end">
+            <textarea rows="10" id="task-complete-summary" placeholder="请输入内容"></textarea>
+        </div>
+    </div>
+
+    <div class="am-form-group">
+        <div class="am-u-sm-10 am-u-sm-push-1">
+            <button id="task-complete-btn" type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
+        </div>
+    </div>
+</form>
+
