@@ -88,7 +88,7 @@ function initView() {
         data:{"processInstanceId":processInstanceId},
         success: function (data) {
             var result = data.result;
-            var option;
+            var option="";
             $.each(result, function(index, value) {
                 option += newComment(value.identity, value.result, value.message, value.date);
             })
