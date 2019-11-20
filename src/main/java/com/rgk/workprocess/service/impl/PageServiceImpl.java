@@ -12,6 +12,7 @@ import org.activiti.engine.TaskService;
 import org.activiti.engine.form.FormProperty;
 import org.activiti.engine.form.TaskFormData;
 import org.activiti.engine.task.Task;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -38,26 +39,33 @@ public class PageServiceImpl implements IPageService {
 
         String taskId = processDetailView.getCustomOrder().getTaskId();
 
-        TaskFormData taskFormData = formService.getTaskFormData(taskId);
-        List<FormProperty> formProperties = taskFormData.getFormProperties();
-        List<String> properties = new ArrayList<String>();
-        for (FormProperty formProperty : formProperties) {
-            properties.add(JSON.toJSONString(formProperty));
-            log.info("formProperty = {}", JSON.toJSONString(formProperty));
+        if (!StringUtils.isEmpty(taskId)) {
+            TaskFormData taskFormData = formService.getTaskFormData(taskId);
+            List<FormProperty> formProperties = taskFormData.getFormProperties();
+            List<String> properties = new ArrayList<String>();
+            for (FormProperty formProperty : formProperties) {
+                properties.add(JSON.toJSONString(formProperty));
+                log.info("formProperty = {}", JSON.toJSONString(formProperty));
+            }
+
+            String taskDefinitionKey = taskService
+                    .createTaskQuery()
+                    .taskId(taskId)
+                    .singleResult()
+                    .getTaskDefinitionKey();
+
+            TaskView taskView = new TaskView();
+            taskView.setTaskId(taskId);
+            taskView.setTaskKey(taskDefinitionKey);
+            taskView.setFormProperty(properties);
+
+            processDetailView.setTaskView(taskView);
+        } else {
+            TaskView taskView = new TaskView();
+            taskView.setTaskId("");
+            taskView.setTaskKey("");
+            processDetailView.setTaskView(taskView);
         }
-
-        String taskDefinitionKey = taskService
-                .createTaskQuery()
-                .taskId(taskId)
-                .singleResult()
-                .getTaskDefinitionKey();
-
-        TaskView taskView = new TaskView();
-        taskView.setTaskId(taskId);
-        taskView.setTaskKey(taskDefinitionKey);
-        taskView.setFormProperty(properties);
-
-        processDetailView.setTaskView(taskView);
 
         log.info("processDetailView = {}", processDetailView);
 

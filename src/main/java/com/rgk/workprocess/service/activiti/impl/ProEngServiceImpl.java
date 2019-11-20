@@ -115,6 +115,10 @@ public class ProEngServiceImpl implements IProEngService {
         map.put(AssigneeForm.assigneeUser, toUser);
         map.put(AssigneeForm.assigneeMessage, message);
 
+        //TODO 当前用户先认领这个TASK，认领后只有该用户可以看到这个TASK，现在取不到用户信息，先写死一个
+        String user = "jingyi.liu";
+        taskService.claim(taskId, user);
+
         taskService.setVariables(taskId,map);
         taskService.complete(taskId);
 
@@ -126,6 +130,10 @@ public class ProEngServiceImpl implements IProEngService {
         Map map = Maps.newHashMap();
         map.put(WorkResultForm.workMessage, message);
         map.put(WorkResultForm.workResult, result);
+
+        //TODO 当前用户先认领这个TASK，认领后只有该用户可以看到这个TASK，现在取不到用户信息，先写死一个
+        String user = "jingyi.liu";
+        taskService.claim(taskId, user);
 
         taskService.setVariables(taskId,map);
         taskService.complete(taskId);
@@ -139,7 +147,10 @@ public class ProEngServiceImpl implements IProEngService {
         map.put(CheckResultForm.checkMessage, message);
         map.put(CheckResultForm.checkResult, result);
 
-        taskService.claim(taskId, "woclaimle");
+        //TODO 当前用户先认领这个TASK，认领后只有该用户可以看到这个TASK，现在取不到用户信息，先写死一个
+        String user = "jingyi.liu";
+        taskService.claim(taskId, user);
+
         taskService.setVariables(taskId,map);
         taskService.complete(taskId);
 

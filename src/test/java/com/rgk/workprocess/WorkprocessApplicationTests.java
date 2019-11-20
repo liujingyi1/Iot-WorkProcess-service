@@ -320,28 +320,81 @@ public class WorkprocessApplicationTests {
     public void TestHistorDetail() {
         List<HistoryDetailNode> historyDetailNodeList = new ArrayList<HistoryDetailNode>();
 
-        List<HistoricDetail> list = historyService.createHistoricDetailQuery().processInstanceId("7551").orderByTime().asc().list();
+        List<HistoricDetail> list = historyService.createHistoricDetailQuery().processInstanceId("42501").orderByTime().asc().list();
+        HistoryDetailNode tempDetailNode = null;
+        String taskKey = "";
         for (HistoricDetail historicDetail : list) {
             HistoricVariableUpdate variable = (HistoricVariableUpdate) historicDetail;
+            System.out.println("-----------------");
 
             String activityInstanceId = historicDetail.getActivityInstanceId();
             if (activityInstanceId != null) {
-                HistoryDetailNode historyDetailNode = new HistoryDetailNode();
+                if (tempDetailNode == null || tempDetailNode.getActivityInstanceId().compareTo(activityInstanceId) != 0) {
+                    if (tempDetailNode != null) {
+                        historyDetailNodeList.add(tempDetailNode);
+                    }
+                    tempDetailNode = new HistoryDetailNode();
+                    tempDetailNode.setActivityInstanceId(activityInstanceId);
 
-                historicDetail.getActivityInstanceId();
+                    HistoricActivityInstance historicActivityInstance = historyService.createHistoricActivityInstanceQuery().activityInstanceId(activityInstanceId).singleResult();
+                    String taskId = historicActivityInstance.getTaskId();
 
+                    HistoricTaskInstance historicTaskInstance = historyService.createHistoricTaskInstanceQuery().taskId(taskId).singleResult();
+                    String assignee = historicTaskInstance.getAssignee();
+                    String taskName = historicTaskInstance.getName();
+                    taskKey = historicTaskInstance.getTaskDefinitionKey();
 
-//                List<HistoricIdentityLink> historicIdentityLinksForTask = historyService.getHistoricIdentityLinksForTask()
-//                for (HistoricIdentityLink historicIdentityLink : historicIdentityLinksForTask) {
-//                    for (HistoricIdentityLink identityLink : historicIdentityLinksForTask) {
-//                        System.out.println("identityLink: " + identityLink.getUserId());
-//                    }
-//                }
+                    tempDetailNode.setTaskId(taskId);
+                    tempDetailNode.setTaskName(taskName);
+                    tempDetailNode.setIdentity(assignee);
+                    tempDetailNode.setDate(historicDetail.getTime());
+//                    tempDetailNode.setDetailList(new ArrayList<HistoricDetail>());
+                }
+
+                System.out.println("taskKey: " + taskKey);
+                if (taskKey.compareTo("assigneeUser") == 0) {
+                    if (variable.getVariableName().compareTo("assigneeMessage")==0) {
+                        tempDetailNode.setMessage(variable.getValue().toString());
+                    } if (variable.getVariableName().compareTo("assigneeUser")==0) {
+                        tempDetailNode.setResult("分配给："+variable.getValue().toString());
+                    }
+                } if (taskKey.compareTo("reportResult") == 0) {
+                    if (variable.getVariableName().compareTo("workMessage")==0) {
+                        tempDetailNode.setMessage(variable.getValue().toString());
+                    } if (variable.getVariableName().compareTo("workResult")==0) {
+                        String value = variable.getValue().toString();
+                        if (value.compareTo("1") == 0) {
+                            tempDetailNode.setResult("完成");
+                        } else if (value.compareTo("2") == 0) {
+                            tempDetailNode.setResult("退回");
+                        }
+                    }
+                }if (taskKey.compareTo("checkResult") == 0) {
+                    if (variable.getVariableName().compareTo("checkMessage")==0) {
+                        tempDetailNode.setMessage(variable.getValue().toString());
+                    } if (variable.getVariableName().compareTo("checkResult")==0) {
+                        String value = variable.getValue().toString();
+                        if (value.compareTo("0") == 0) {
+                            tempDetailNode.setResult("审核通过");
+                        } else if (value.compareTo("1") == 0) {
+                            tempDetailNode.setResult("重新分配");
+                        } else if (value.compareTo("2") == 0) {
+                            tempDetailNode.setResult("重新维修");
+                        }
+                    }
+                }
             }
 
-            System.out.println("activityInstanceId: " + activityInstanceId);
-            System.out.println("variable: " + variable.getVariableName() + " = " + variable.getValue());
+
+//            System.out.println("historicDetail: " + historicDetail);
+//            System.out.println("activityInstanceId: " + activityInstanceId);
+//            System.out.println("variable: " + variable.getVariableName() + " = " + variable.getValue());
         }
+        if (tempDetailNode != null) {
+            historyDetailNodeList.add(tempDetailNode);
+        }
+        System.out.println("historicDetailList: " + historyDetailNodeList.toString());
+
     }
 
     @Test

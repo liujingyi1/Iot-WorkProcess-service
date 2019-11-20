@@ -34,7 +34,7 @@ function initBuildings() {
 			var option;
 			$.each(result, function(index, value) {
 				option += "<option value=" + value.id + ">"
-						+ value.alias + "</option>";
+					+ value.alias + "</option>";
 			})
 			$('#position-select').append(option);
 		}
